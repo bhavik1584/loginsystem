@@ -2,8 +2,19 @@
 
 include"conn.php";
 
+$logout='<div class="alert alert-danger" role="alert">
+  You are sucessfuly logout
+</div>';
+
+if(!isset($_SESSION['logged']))
+{
+  echo $logout;
+}
+
+
+
 $suc='<div class="alert alert-success" role="alert">
-  hello
+  You are sucessfuly login 
 </div>';
 
 $erorr='<div class="alert alert-danger" role="alert">
