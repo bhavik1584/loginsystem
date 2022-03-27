@@ -35,6 +35,10 @@ if($_SERVER['REQUEST_METHOD']=='POST')
         $insert="INSERT INTO `logindatabase` (`username`,`password`) VALUES ('$username','$password')";
         mysqli_query($conn,$insert);
         echo$suc;
+        session_start();
+        $_SESSION['username']=$username;
+        header("location:welcome.php");
+    
 
       }
     
@@ -63,20 +67,15 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     <title>Hello, world!</title>
 
     <style>
-      .heading
-      {
-        margin:20px 0px 20px 0px;
-        text-align:center;
-      }
-      .heading a
-      {
-        text-decoration:none;
-      
-      }
+     
       .container
       {
         width:50%;
         margin:auto;
+      }
+      .heading
+      {
+        text-align:center;
       }
     </style>
   </head>
@@ -97,11 +96,8 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
     <input type="password" class="form-control" name="cpassword" id="exampleInputPassword1">
   </div>
-  <div class="heading">
-     <a href="login.php">Do You  Already Have Account ?
-     </a>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  
+  <button type="submit" class="btn btn-primary">Sing Up</button>
 </form>
     </div>
 

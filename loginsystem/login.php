@@ -26,11 +26,13 @@ if($_SERVER['REQUEST_METHOD']=='POST')
         
         $num=mysqli_num_rows($result);
 
-        echo $num;
        
         if($num==1)
         {
             echo $suc;
+            session_start();
+            $_SESSION['logged'];
+            $_SESSION['username']=$username;
             header ("location:welcome.php");
         }
         else 
@@ -78,6 +80,16 @@ if($_SERVER['REQUEST_METHOD']=='POST')
         margin:20px 0px 20px 0px;
         text-align:center;
       }
+      .heading1
+      {
+        margin:20px 0px 20px 0px;
+        
+      }
+      .heading1 a
+      {
+        text-decoration:none;
+      
+      }
       </style>
   </head>
   <body>
@@ -93,8 +105,11 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     <label for="exampleInputPassword1" class="form-label">Password</label>
     <input type="password" class="form-control" name="password" id="exampleInputPassword1">
   </div>
-  
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <div class="heading1">
+     <a href="singup.php">Create new account ?
+     </a>
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
 </form>
     </div>
 

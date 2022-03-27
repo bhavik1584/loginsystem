@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+
+if(!isset($_SESSION['logged'])||$_SESSION['logged']!=true)
+ {
+    header("header:index.php");
+ }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +18,10 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-    echo"<h1>welcome</h1>";
-    ?>
+
+    
+    
+    welcome  <?php  echo  $_SESSION['username']?>
+   
 </body>
 </html>
