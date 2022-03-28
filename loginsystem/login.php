@@ -29,10 +29,10 @@ if($_SERVER['REQUEST_METHOD']=='POST')
 
 
     
-      
+     
 
    
-        $serch="SELECT * FROM `login`.`logindatabase` WHERE `username`='$username' AND `password`='$password'";
+        $serch="SELECT * FROM `login`.`logindatabase` WHERE `username`='$username'";
         $result= mysqli_query($conn,$serch);
         
         $num=mysqli_num_rows($result);
@@ -40,16 +40,27 @@ if($_SERVER['REQUEST_METHOD']=='POST')
        
         if($num==1)
         {
+          while($row=mysqli_fetch_assoc($result))
+          {
+
+            if (password_verify($password,$row['password'])) 
+            {
+
             echo $suc;
             session_start();
             $_SESSION['logged'];
             $_SESSION['username']=$username;
             header ("location:welcome.php");
-        }
-        else 
-        {
-        echo $erorr;
-        }
+            }
+            else 
+            {
+            echo $erorr;
+            }
+            
+          }
+
+        }    
+       
     
 
 

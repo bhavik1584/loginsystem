@@ -21,6 +21,8 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     $password=$_POST['password'];
     $cpassword=$_POST['cpassword'];
 
+    
+
     $serch="SELECT * FROM `login`.`logindatabase` WHERE `username`='$username' AND `password`='$password'";
     $result= mysqli_query($conn,$serch);
     
@@ -30,9 +32,11 @@ if($_SERVER['REQUEST_METHOD']=='POST')
       echo $already_exist;
     }
     
+     
     else if($password==$cpassword && $username!=NULL)
       {
-        $insert="INSERT INTO `logindatabase` (`username`,`password`) VALUES ('$username','$password')";
+        $hash=password_hash($password,PASSWORD_DEFAULT);
+        $insert="INSERT INTO `logindatabase` (`username`,`password`) VALUES ('$username','$hash')";
         mysqli_query($conn,$insert);
         echo$suc;
         session_start();
