@@ -131,6 +131,7 @@ $conn = mysqli_connect($servername, $username, $password, $db);
 
         $result = mysqli_query($conn, $sql);
 
+        $i=1;
         while ($row = mysqli_fetch_assoc($result)) 
         {
 
@@ -139,13 +140,17 @@ $conn = mysqli_connect($servername, $username, $password, $db);
 
           echo
           "<tr>
-      <th scope='row'>" . $row['sr'] . "</th>
+      <th scope='row'>" . $i . "</th>
       <td>" . $row['title'] . "</td>
       <td>" . $row['disc'] . "</td>
       <td>" . $row['tstamp'] . "</td>
       <td><a href='delete.php?rn=$a'>DELETE</a><td>
       
         </tr>";
+
+
+
+        $i++;
         }
         
 
